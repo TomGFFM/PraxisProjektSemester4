@@ -10,13 +10,14 @@ from PIL import Image
 # cos_lr_pick = [False, True]
 # batch_size = [8, 16, 32, 64]
 
-optimizer_pick = ['Adam', 'Adamax']
+optimizer_pick = ['Adam', 'Adamax', 'AdamW']
 cos_lr_pick = [True]
-batch_size = [6]
+batch_size = [16]
 
 for bs in batch_size:
     for c in cos_lr_pick:
         for o in optimizer_pick:
+            print(bs, o, c)
             # init and load comet_ml
             comet_ml.init()
             experiment = Experiment(
@@ -35,14 +36,14 @@ for bs in batch_size:
 
             # Train the model on apple mps (metal performance shader) device
             model.train(data='MiniMetroBot/yolo_tuning/images_annotated/data.yaml',
-                        epochs=140,
-                        patience=40,
+                        epochs=130,
+                        patience=30,
                         batch=bs,
                         cache=True,
-                        imgsz=1856,
+                        imgsz=1024,
                         save_period=-1,
                         device='mps',
-                        workers=24,
+                        workers=16,
                         project='MiniMetroBot/yolo_tuning/model_tuned',
                         optimizer=o,
                         cos_lr=c,
