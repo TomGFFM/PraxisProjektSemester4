@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "MiniMetroBot"
-version = "0.1.4"
+version = "0.1.6"
 description = "Bot which detects main objects in the game Minimetro."
 authors = ["TomGFFM <thomas.graf@icloud.com>"]
 license = "BSD"

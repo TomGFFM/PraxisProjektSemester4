@@ -11,16 +11,19 @@ To execute this script, run it directly as a standalone Python program.
 Example:
     python <script_name>.py
 
+For further usage options visit README.md
+
 """
-from minimetrobot.models import best_model, class_labels
+from minimetrobot.models import best_model
 from minimetrobot.core import ScreenDetector
 
 def main():
     """Main function to start the object detection on live screen."""
     # Initialize the screen detector with the path to the YOLO model
-    detector = ScreenDetector(best_model, class_labels)
-    detector.mock_interaction()
+    # detector = ScreenDetector(best_model, class_labels)
+    detector = ScreenDetector(best_model)
     detector.initialize_display(screen_number=1)
+    detector.mock_interaction()
     detector.detect_on_screen()
 
 

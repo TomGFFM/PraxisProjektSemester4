@@ -49,8 +49,12 @@ class ScreenDetector:
             model (YOLO): The actual YOLO model object.
         """
         self.model = model
-        self.class_lables = class_labels
         self.window_name = 'Detections'
+
+        if class_labels:
+            self.class_lables = class_labels
+        else:
+            self.class_lables = self.model.names
 
     def initialize_display(self, screen_number: int = 1) -> None:
         """
@@ -101,17 +105,27 @@ class ScreenDetector:
         cv2.destroyAllWindows()
 
     def mock_interaction(self) -> None:
-        """Simulate mouse clicks for demonstration purposes."""
-        time.sleep(2)  # Wait for 2 seconds before starting the action
+        """Simulate mouse clicks for demonstration purposes. Fitted to my personal macbook to mock some actions"""
+        # Wait for 2 seconds before starting the action
+        time.sleep(2)
 
-        # Move the mouse cursor to coordinates (x=100, y=100) on the screen
-        pyautogui.moveTo(100, 100, duration=1)  # The movement takes 1 second
-
-        # Perform a mouse click
-        pyautogui.click()
-
-        # Move the mouse cursor to another point
-        pyautogui.moveTo(200, 200, duration=1)
+        # Move the mouse cursor to mentioned coordinates on the screen
+        pyautogui.moveTo(1247, 293, duration=1)
 
         # Perform a right-click
         pyautogui.rightClick()
+
+        # Perform a mouse click
+        pyautogui.click(x=1080, y=297, button='left', clicks=1)
+
+        # Wait for 2 seconds before starting the action
+        time.sleep(10)
+
+        # Perform a mouse click
+        pyautogui.click(x=570, y=321, button='left', clicks=1)
+
+        # Wait for 2 seconds before starting the action
+        time.sleep(5)
+
+        # Perform a mouse click
+        pyautogui.click(x=570, y=321, button='left', clicks=1)

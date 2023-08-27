@@ -1,5 +1,27 @@
 # MiniMetroBot
 
+## Table of Contents
+
+1. [Description](#description)
+2. [Project Scope and Targets](#project-scope-and-targets)
+    - [In Scope Targets](#in-scope-targets)
+    - [Out of Scope Targets](#out-of-scope-targets)
+3. [Project Structure](#project-structure)
+4. [Dependencies](#dependencies)
+5. [Installation of the Final Bot](#installation-of-the-final-bot)
+    - [Option 1: Using Git and Poetry](#option-1-using-git-and-poetry)
+    - [Option 2: Using Wheel File](#option-2-using-wheel-file)
+6. [Usage](#usage)
+    - [Option 1: Using the Poetry Entry Point](#option-1-using-the-poetry-entry-point)
+    - [Option 2: Running the Python Script Manually](#option-2-running-the-python-script-manually)
+7. [YOLOv8 Model Training information](#yolov8-model-training-information)
+    - [Model Information](#model-information)
+    - [Training Metrics](#training-metrics)
+    - [Model Training](#model-training)
+8. [Contributing](#contributing)
+9. [License](#license)
+10. [Show your support](#show-your-support)
+
 ## Description
 
 MiniMetroBot is an object detection bot for the game MiniMetro. It uses YOLOv8 for object detection and OpenCV for image processing.  
@@ -29,7 +51,8 @@ MiniMetroBot/                       # Root directory
 │   │   ├── __init__.py
 │   │   └── ScreenDetector.py       # Class for detecting objects and to mock input actions (docstring available)
 │   │── evidences/                  # Folder contains an evidence which shows that the bot works as discussed
-│   │   └── usage_evidence.mp4      # Screenvideo from bot usage
+│   │   └── mock_activity_start.mov # Screenvideo activity mock -> startup Minimetro game
+│   │   ├── detection_evidence.mov  # Screenvideo from bot usage -> object detection while gaming
 │   │── models/                     # Model files
 │   │   ├── __init__.py
 │   │   ├── best.pt                 # Best model from training exercise
@@ -94,11 +117,11 @@ To install the system and its dependencies follow the installation instructions 
 
 ### Option 2: Using Wheel File
 
-1. **Download the latest wheel file, `minimetrobot-0.1.4-py3-none-any.whl`, from the repository.**
+1. **Download the latest wheel file, `minimetrobot-0.1.6-py3-none-any.whl`, from the repository.**
 
 2. **Install the package using `pip`:**
     ```bash
-    pip install path/to/minimetrobot-0.1.3-py3-none-any.whl
+    pip install path/to/minimetrobot-0.1.6-py3-none-any.whl
     ```
 
 ## Usage
