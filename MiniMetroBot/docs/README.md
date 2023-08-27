@@ -3,13 +3,12 @@
 ## Description
 
 MiniMetroBot is an object detection bot for the game MiniMetro. It uses YOLOv8 for object detection and OpenCV for image processing.  
-The recent status of the Bot is that it is capable to detect the main game object of the game Minimetro and it executes before the detection starts  
+The recent status of the Bot is that it is capable to detect the main game object of the game Minimetro and it executes before the detection starts 
 a basic automated mouse click and move.
 
 ## Project Scope and Targets
-Main scope of the project is to detect game object which includes the position of the relevant objects and to add the  
-capability to automatically perform user inputs. Out of scope are further steps to further train another model which actually
-can play the game.
+Main scope of the project is to detect game object which includes the position of the relevant objects and to add the capability to automatically perform user inputs. 
+Out of scope are further steps to further train another model which actually can play the game.
 
 ### In Scope Targets
 -[x] Game object detection
@@ -74,7 +73,7 @@ The project has the following dependencies:
 
 To install the system and its dependencies follow the installation instructions below.
 
-## Installation
+## Installation of the Final Bot
 
 ### Option 1: Using Git and Poetry
 
@@ -95,7 +94,7 @@ To install the system and its dependencies follow the installation instructions 
 
 ### Option 2: Using Wheel File
 
-1. **Download the latest wheel file, `minimetrobot-0.1.3-py3-none-any.whl`, from the repository.**
+1. **Download the latest wheel file, `minimetrobot-0.1.4-py3-none-any.whl`, from the repository.**
 
 2. **Install the package using `pip`:**
     ```bash
@@ -104,23 +103,16 @@ To install the system and its dependencies follow the installation instructions 
 
 ## Usage
 
-### Option 1: Using the Entry Point
-
-If you've installed the project with Poetry and defined an entry point, you can use the following command to run the MiniMetroBot:
+### Option 1: Using the Poetry Entry Point 
+**(notice different naming convention here. Just: "metrobot")**  
+**If poetry is installed you can use the following command to run the MiniMetroBot from the environment where the package is installed:**
 
 ```bash
-metrobot
+poetry run metrobot
 ```
 
 ### Option 2: Running the Python Script Manually
-
-1. **Activate the virtual environment (if installed via Poetry):**
-
-```bash
-poetry shell
-```
-
-2. **Run the main script:**
+**Activate the virtual environment and execute the following command:**
 
 ```bash
 python -m minimetrobot
@@ -132,7 +124,7 @@ Either of these options will start the MiniMetroBot.
 ## YOLOv8 Model Training information
 
 ### Model Information
-The project folder "yolo_tuning" contains a subfolder "model_tuned". Here are a number of model folders available which contain trained YOLOv8 object detection models.   
+The project folder "yolo_tuning" contains a subfolder "model_tuned". Here are a number of model folders available which contain trained YOLOv8 object detection models. 
 The final model which was chosen and integrated into the recent version of the Bot is in the folder: "round_optimized_with_Adamax_True_bs_16_20230826_1342"
 
 ### Training Metrics
@@ -140,7 +132,7 @@ The relevant training metrics can be reviewed in the public CometML report for t
 Click here to visit the report page: [MiniMetroBot CometML Metrics Report.](https://www.comet.com/tomgffm/mini-metro-object-detection/reports/minimetro-bot-detection-model-tuning-report)
 
 ### Model Training
-The YOLOv8 model training can be performed via the script yolo_model_tuning.py. The underlying base model is available in the folder "model_source".  
+The YOLOv8 model training can be performed via the script yolo_model_tuning.py. The underlying base model is available in the folder "model_source". 
 This contains the basic YOLOv8 which is used as a foundation for the detection model training. Review contained docstring for further usage and information.
 
 ## Contributing
