@@ -1,18 +1,41 @@
+"""
+This script is designed for object detection model training in the game "Mini Metro" using the YOLO algorithm.
+The script iterates through different combinations of hyperparameters like batch size, optimizer, and learning rate schedule.
+The performance metrics and the model checkpoints are managed and saved using Comet.ml.
+
+Parameters:
+    optimizer_pick (list): List of optimizer names to be used in the training.
+    cos_lr_pick (list): List of booleans to specify whether cosine learning rate schedule should be used.
+    batch_size (list): List of integers specifying the batch sizes to be used in the model training.
+
+Comet.ml is initialized for each experiment to track metrics, hyperparameters, and model checkpoints.
+The experiment's name is constructed using the hyperparameters and the current timestamp.
+
+The YOLO model is trained using the following:
+    - Pre-trained model from the path 'minimetrobot/yolo_tuning/model_source/yolov8n.pt'
+    - Training data from the YAML file located at 'minimetrobot/yolo_tuning/images_annotated/data.yaml'
+    - Number of epochs is set to 130, with a patience of 30 epochs for early stopping.
+    - The trained model is saved in 'minimetrobot/yolo_tuning/model_tuned'.
+
+After training, the Comet.ml experiment is ended, and metrics are saved for future analysis.
+
+Notes:
+    mAP - mean Average Precision: The average precision calculated across all existing classes.
+    box_loss - Loss for the bounding boxes; the difference between the predicted and actual boxes.
+    cls_loss - Classification loss; the difference between the predicted and actual class labels.
+
+"""
+
+
 import comet_ml
 
 from comet_ml import Experiment
 from datetime import datetime
 from ultralytics import YOLO
-from PIL import Image
 
-
-# optimizer_pick = ['Adam', 'Adamax', 'AdamW', 'NAdam']
-# cos_lr_pick = [False, True]
-# batch_size = [8, 16, 32, 64]
-
-optimizer_pick = ['Adam', 'Adamax', 'AdamW']
-cos_lr_pick = [True]
-batch_size = [16]
+optimizer_pick = ['Adam', 'Adamax', 'AdamW', 'NAdam']
+cos_lr_pick = [False, True]
+batch_size = [8, 16, 32, 64]
 
 for bs in batch_size:
     for c in cos_lr_pick:
@@ -54,34 +77,6 @@ for bs in batch_size:
                         )
 
             experiment.end()
-
-# metrics = model.val()  # evaluate model performance on the validation set
-# path = model.export(format="onnx")
-
-# load best model for smoke test
-# best_model = YOLO('model_tuned/train3/weights/best.pt')
-# best_model = YOLO('model_tuned/round_optimized_with_Adam/weights/best.pt')
-#
-#
-# # predict on test_image
-# im1 = Image.open("minimetrobot/yolo_tuning/images_raw/GameMenuItems.jpg")
-# results1 = best_model.predict(source=im1, save=True)  # save plotted images
-#
-# im2 = Image.open("minimetrobot/yolo_tuning/images_raw/Bildschirmfoto 2023-07-15 um 12.24.53.png")
-# results2 = best_model.predict(source=im2, save=True)  # save plotted images
-#
-# im3 = Image.open("minimetrobot/yolo_tuning/images_raw/Bildschirmfoto 2023-07-15 um 12.25.38.png")
-# results3 = best_model.predict(source=im3, save=True)  # save plotted images
-
-"""
-mAP - mean Average Precision: Durchschnittlichte Precision über alle vorhandenen Klassen
-box_loss - Loss der bounding boxes; Differenz der vorhergesagten und der tatsächlichen Boxen
-cls_loss - Classification loss; Vorhergesagte Klasse vs. tatsächlicher Klasse
-"""
-
-
-
-
 
 
 

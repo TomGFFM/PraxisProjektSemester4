@@ -3,8 +3,10 @@ import numpy as np
 import pyautogui
 import time
 
-from screeninfo import get_monitors
 from PIL import ImageGrab
+from screeninfo import get_monitors
+from typing import List, Optional
+from ultralytics import YOLO
 
 
 class ScreenDetector:
@@ -39,7 +41,8 @@ class ScreenDetector:
        >>> detector.initialize()
        >>> detector.detect_objects()
        """
-    def __init__(self, model, class_labels=None):
+
+    def __init__(self, model: YOLO, class_labels: Optional[List[str]] = None) -> None:
         """Initialize the ScreenDetector with the YOLO model.
 
         Args:
@@ -49,7 +52,7 @@ class ScreenDetector:
         self.class_lables = class_labels
         self.window_name = 'Detections'
 
-    def initialize_display(self, screen_number=1):
+    def initialize_display(self, screen_number: int = 1) -> None:
         """
         Initializes the display window and moves it to the specified screen number.
 
@@ -66,7 +69,7 @@ class ScreenDetector:
             monitor = monitors[screen_number]
             cv2.moveWindow(self.window_name, monitor.x, monitor.y)
 
-    def detect_on_screen(self):
+    def detect_on_screen(self) -> None:
         """Detect objects on the live screen and display them."""
         while True:
             # Capture a screenshot of the entire screen
@@ -97,7 +100,7 @@ class ScreenDetector:
 
         cv2.destroyAllWindows()
 
-    def mock_interaction(self):
+    def mock_interaction(self) -> None:
         """Simulate mouse clicks for demonstration purposes."""
         time.sleep(2)  # Wait for 2 seconds before starting the action
 
